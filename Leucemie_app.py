@@ -16,7 +16,7 @@ from PIL import Image
 
 canvas.set_option('deprecation.showfileUploaderEncoding', False) ## Warming from futur version of streamlit ?
 canvas.set_option('deprecation.showPyplotGlobalUse', False)
-canvas.set_page_config(page_title="Onepoint Leukemia", layout="wide", page_icon ='ressources/tinylogo2.PNG')
+canvas.set_page_config(page_title="Leukemia APL clf", layout="wide", page_icon ='ressources/tinylogo2.PNG')
 
 # canvas.markdown('<style>h1{background: linear-gradient(to left, #ffffff, #C7E0F1);}</style>', unsafe_allow_html=True)
 canvas.markdown('<style>.css-1aumxhk {background: linear-gradient(to right, #ffffff, #1F618D);}</style>',unsafe_allow_html=True)
