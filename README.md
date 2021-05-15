@@ -1,6 +1,12 @@
-# Run App 
+# Shared App
+
+https://share.streamlit.io/nico-facto/leukemia-apl-classification/main/Leucemie_app.py
+
+# Run App Locally 
 
 streamlit run Leucemie_app.py
+
+The code and data of the search will be available soon
 
 # Custom Virtual Env 
 
