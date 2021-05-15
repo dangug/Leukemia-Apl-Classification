@@ -207,6 +207,7 @@ def ui_manager():
     if uploaded_file is not None:
         uploaded_file.seek(0)
         df = pd.read_csv(uploaded_file)
+        canvas.sidebar.write("unselect the csv file to return to manual entry")
         selec_patient = int(canvas.sidebar.number_input("Patient Number", value=0))
         if selec_patient != 0:
             df = df[df['Patient_numbers'].isin([selec_patient])]
@@ -214,7 +215,7 @@ def ui_manager():
                 canvas.warning("Error in Id selected, is it present in the file ?")
                 return
     else:
-        
+        canvas.sidebar.write("Csv example [link](https://github.com/Nico-Facto/Leukemia-Apl-Classification/blob/main/templates_bach_pediction/templates_bach_pediction.csv)")
         df = input_manager()
 
 
