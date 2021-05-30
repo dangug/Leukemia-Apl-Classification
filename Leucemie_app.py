@@ -16,7 +16,7 @@ from PIL import Image
 
 canvas.set_option('deprecation.showfileUploaderEncoding', False) ## Warming from futur version of streamlit ?
 canvas.set_option('deprecation.showPyplotGlobalUse', False)
-canvas.set_page_config(page_title="Leukemia APL clf", layout="wide", page_icon ='ressources/tinylogo2.PNG')
+canvas.set_page_config(page_title="Leukemia APL CLF", layout="wide")
 
 # canvas.markdown('<style>h1{background: linear-gradient(to left, #ffffff, #C7E0F1);}</style>', unsafe_allow_html=True)
 canvas.markdown('<style>.css-1aumxhk {background: linear-gradient(to right, #ffffff, #1F618D);}</style>',unsafe_allow_html=True)
@@ -197,10 +197,32 @@ def input_manager():
                 i_CCMH_,i_PNN_,i_Lymphos_,i_TP_)
     return df
 
+
+def show_privacy_policy():
+    back = canvas.button("Back to the app")
+    if back:
+        privacy = False
+    canvas.write("""App doesn't collect any data, in any form.
+    
+    This software is provided "as is," without warranty of any kind, express or implied. 
+    In no event shall creator or its contributors be held liable for any direct, indirect, incidental, special or consequential damages 
+    arising out of the use of or inability to use this software.
+
+    Project is open source under BSD-3-Clause License see more details :
+    """)
+    canvas.write("BSD-3-Clause [link](https://github.com/Nico-Facto/Leukemia-Apl-Classification/blob/main/LICENSE)")
+
 def ui_manager():
     """Store Ui elements and return var for button action """
 
     canvas.sidebar.title('Leukemia APL AI')
+    
+
+    privacy = canvas.sidebar.button("Privacy Policies")
+    if privacy :
+        show_privacy_policy()
+        return
+
     canvas.sidebar.header("Batch Entries")
     uploaded_file = canvas.sidebar.file_uploader("",type="csv")
 
