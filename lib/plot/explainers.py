@@ -44,7 +44,7 @@ def shap_explainer_cat_pipeline(data, list_cat_features, list_num_features, pipe
                     
     features_list = list(list_num_features)
     features_list.extend(feature_name)
-
+    
     if len(data) >= 500:
         data = data.sample(100)
     input_data = pipeline[0].transform(data)
