@@ -52,6 +52,9 @@ label_negatif = "Non-APL"
 global truster_width
 truster_width = 90
 
+## Global trust warning
+global TRUST_THRESHOLD
+TRUST_THRESHOLD = 99
 
 ##########################   
 
@@ -127,7 +130,7 @@ def AI_Job(df,single_pred=False):
         Final_return['Predictions'] = Final_return.apply(convert_pred_to_label, axis=1)
         if not single_pred:
             Final_return['Patient_numbers'] = x_valid['Patient_numbers']
-        colA.dataframe(Final_return)
+        display_predictions(colA, Final_return)
         if single_pred:
             fig, ano_pred = Anomalie_job(x_valid_clean) 
             visual_truster(colA, Final_return.loc[0,'Predictions'], Final_return.loc[0,'Trust%'], ano_pred, fig)
@@ -147,6 +150,14 @@ def AI_Job(df,single_pred=False):
     except Exception as e:
         canvas.warning(e)
     my_bar.progress(100)
+
+def display_predictions(colA, Final_return):
+    trust_value = min(Final_return['Trust%'])
+    if  trust_value < TRUST_THRESHOLD:
+        colA.error(f"The minimal trust value {trust_value}% is below the {TRUST_THRESHOLD}%."+
+        " You should be aware the results are outside the zone of trust for the predictions.")
+    colA.dataframe(Final_return)
+    
 
 def Anomalie_job(X_input):
     model_svm = svm.OneClassSVM(degree=1, nu=0.05, kernel='rbf', gamma='scale')
